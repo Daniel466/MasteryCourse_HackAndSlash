@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControllerManager : MonoBehaviour
 {
     private List<Controller> controllers;
+    
     private void Awake()
     {
         controllers = FindObjectsOfType<Controller>().ToList();
@@ -32,5 +33,7 @@ public class ControllerManager : MonoBehaviour
     {
         controller.IsAssigned = true;
         Debug.Log("Assigned Controller " + controller.gameObject.name);
+
+        FindObjectOfType<PlayerManager>().AddPlayerToGame(controller);
     }
 }

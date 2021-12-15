@@ -6,21 +6,31 @@ public class Controller : MonoBehaviour
     public bool IsAssigned { get; set; }
 
     private string attackButton;
+    private string horizontalAxis;
+    private string verticalAxis;
 
     public bool attack;
+    private bool attackPressed;
+    public float horizontal;
+    public float vertical;
 
     private void Update()
     {
         if (!string.IsNullOrEmpty(attackButton))
         {
             attack = Input.GetButton(attackButton);
+            attackPressed = Input.GetButtonDown(attackButton);
+            horizontal = Input.GetAxis(horizontalAxis);
+            vertical = Input.GetAxis(verticalAxis);
         }
     }
 
-    public void SetIndex(int index)
+    internal void SetIndex(int index)
     {
         Index = index;
         attackButton = "Attack" + Index;
+        horizontalAxis = "Horizontal" + index;
+        verticalAxis = "Vertical" + index;
         gameObject.name = "Controller" + Index;
     }
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Character : MonoBehaviour
 {
@@ -59,9 +57,9 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++)
         {
-            var box = attackResults[i].GetComponent<Box>();
-            if (box != null)
-                box.TakeHit(this);
+            var takeHit = attackResults[i].GetComponent<ITakeHit>();
+            if (takeHit != null)
+                takeHit.TakeHit(this);
         }
     }
 }

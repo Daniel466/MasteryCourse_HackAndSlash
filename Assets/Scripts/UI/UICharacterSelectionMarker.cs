@@ -70,6 +70,7 @@ public class UICharacterSelectionMarker : MonoBehaviour
     private void MoveToCharacterPanel(UICharacterSelectionPanel panel)
     {
         transform.position = panel.transform.position;
+        player.CharacterPrefab = panel.CharacterPrefab;
     }
 
     private IEnumerator Initialize()

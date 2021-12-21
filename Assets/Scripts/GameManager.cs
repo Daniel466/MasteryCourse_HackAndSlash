@@ -23,5 +23,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         
         Debug.Log("Game Beginning");
+        PlayerManager.Instance.SpawnPlayerCharacters();
     }
 }

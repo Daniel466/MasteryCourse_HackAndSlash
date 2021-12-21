@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
         if (direction.magnitude > 0.25f)
         {
             transform.position += direction * Time.deltaTime * moveSpeed;
+            transform.forward = direction * 360f;
         }
     }
 }

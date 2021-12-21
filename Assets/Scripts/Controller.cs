@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
     private string verticalAxis;
 
     public bool attack;
-    private bool attackPressed;
+    public bool attackPressed;
     public float horizontal;
     public float vertical;
 

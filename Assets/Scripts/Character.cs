@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -17,6 +18,9 @@ public class Character : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         attackResults = new Collider[10];
+
+        var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
+        animationImpactWatcher.OnImpact += AnimationImpactWatcherOnOnImpact;
     }
 
     internal void SetController(Controller controller)
@@ -41,14 +45,15 @@ public class Character : MonoBehaviour
 
         if (controller.attackPressed)
         {
-            Attack();
+            animator.SetTrigger("Attack");
         }
     }
 
-    private void Attack()
+    /// <summary>
+    /// Called by animation event via AnimationImpactWatcher
+    /// </summary>
+    private void AnimationImpactWatcherOnOnImpact()
     {
-        animator.SetTrigger("Attack");
-        
         Vector3 position = transform.position + transform.forward * attackOffset;
         int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
 

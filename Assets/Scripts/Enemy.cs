@@ -2,8 +2,16 @@
 
 public class Enemy : MonoBehaviour, ITakeHit
 {
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     public void TakeHit(Character hitBy)
     {
-        Destroy(gameObject);
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 6);
     }
 }

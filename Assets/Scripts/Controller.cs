@@ -4,7 +4,7 @@ public class Controller : MonoBehaviour
 {
     public int Index { get; private set; }
     public bool IsAssigned { get; set; }
-
+    
     private string attackButton;
     private string horizontalAxis;
     private string verticalAxis;
@@ -37,5 +37,10 @@ public class Controller : MonoBehaviour
     public bool AnyButtonDown()
     {
         return attack;
+    }
+    
+    internal Vector3 GetDirection()
+    {
+        return new Vector3(horizontal, 0, vertical);
     }
 }

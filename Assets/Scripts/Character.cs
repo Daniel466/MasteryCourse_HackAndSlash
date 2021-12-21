@@ -7,10 +7,16 @@ public class Character : MonoBehaviour
     private Animator animator;
     
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float attackOffset = 1f;
+    
+    [SerializeField] private float attackRadius = 1f;
+    
+    private Collider[] attackResults;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        attackResults = new Collider[10];
     }
 
     internal void SetController(Controller controller)
@@ -34,6 +40,23 @@ public class Character : MonoBehaviour
         }
 
         if (controller.attackPressed)
-            animator.SetTrigger("Attack");
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
+        
+        Vector3 position = transform.position + transform.forward * attackOffset;
+        int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            var box = attackResults[i].GetComponent<Box>();
+            if (box != null)
+                box.TakeHit(this);
+        }
     }
 }

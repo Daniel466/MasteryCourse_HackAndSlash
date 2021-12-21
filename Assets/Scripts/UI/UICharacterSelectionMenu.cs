@@ -10,6 +10,7 @@ public class UICharacterSelectionMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI startGameText;
     
     private UICharacterSelectionMarker[] makers;
+    private bool startEnabled;
 
     public UICharacterSelectionPanel LeftPanel { get { return leftPanel; } }
     public UICharacterSelectionPanel RightPanel { get { return rightPanel; } }
@@ -33,7 +34,16 @@ public class UICharacterSelectionMenu : MonoBehaviour
                 lockedCount++;
         }
 
-        bool startEnabled = playerCount > 0 && playerCount == lockedCount;
+        startEnabled = playerCount > 0 && playerCount == lockedCount;
         startGameText.gameObject.SetActive(startEnabled);
+    }
+
+    public void TryStartGame()
+    {
+        if (startEnabled)
+        {
+            GameManager.Instance.Begin();
+            gameObject.SetActive(false);
+        }
     }
 }

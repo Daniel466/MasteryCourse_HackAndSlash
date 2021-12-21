@@ -50,6 +50,13 @@ public class UICharacterSelectionMarker : MonoBehaviour
                 LockCharacter();
             }
         }
+        else
+        {
+            if (player.Controller.attackPressed)
+            {
+                menu.TryStartGame();
+            }
+        }
     }
 
     private void LockCharacter()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -85,4 +86,17 @@ public class EnemySpawner : MonoBehaviour
 
         return enemyPrefabs[index];
     }
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(transform.position, Vector3.one);
+
+        foreach (var spawnPoint in spawnPoints)
+        {
+            Gizmos.DrawSphere(spawnPoint.position, 0.5f);
+        }
+    }
+    #endif
 }

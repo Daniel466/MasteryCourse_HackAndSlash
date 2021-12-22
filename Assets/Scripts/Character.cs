@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public static List<Character> All = new List<Character>();
+    
     private Controller controller;
     private Animator animator;
     
@@ -61,5 +65,17 @@ public class Character : MonoBehaviour
             if (takeHit != null)
                 takeHit.TakeHit(this);
         }
+    }
+
+    private void OnEnable()
+    {
+        if (All.Contains(this) == false)
+            All.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        if (All.Contains(this))
+            All.Remove(this);
     }
 }

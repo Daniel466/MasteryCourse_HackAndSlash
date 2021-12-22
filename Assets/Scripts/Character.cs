@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, ITakeHit, IAttack
 {
     public static List<Character> All = new List<Character>();
     
@@ -11,10 +12,13 @@ public class Character : MonoBehaviour
     
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float attackOffset = 1f;
-    
     [SerializeField] private float attackRadius = 1f;
     
+    [SerializeField] private int damage = 1;
+    
     private Collider[] attackResults;
+    
+    public int Damage { get { return damage; } }
 
     private void Awake()
     {
@@ -77,5 +81,10 @@ public class Character : MonoBehaviour
     {
         if (All.Contains(this))
             All.Remove(this);
+    }
+
+    public void TakeHit(IAttack hitBy)
+    {
+        // implement damage on players
     }
 }

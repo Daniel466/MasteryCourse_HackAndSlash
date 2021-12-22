@@ -59,6 +59,7 @@ MonoBehaviour:
   moveSpeed: 5
   attackOffset: 1
   attackRadius: 1
+  damage: 1
 --- !u!1001 &462125477145251017
 PrefabInstance:
   m_ObjectHideFlags: 0

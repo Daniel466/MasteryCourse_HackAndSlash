@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Attacker))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour, ITakeHit
 {
     [SerializeField] private GameObject impactParticle;
@@ -12,14 +13,16 @@ public class Enemy : MonoBehaviour, ITakeHit
     
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private Attacker attacker;
     private Character target;
 
     private bool IsDead { get { return currentHealth <= 0; } }
-
+    
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        attacker = GetComponent<Attacker>();
     }
 
     private void OnEnable()
@@ -34,11 +37,7 @@ public class Enemy : MonoBehaviour, ITakeHit
         
         if (target == null)
         {
-            target = Character.All
-                .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
-                .FirstOrDefault();
-            
-            animator.SetFloat("Speed", 0f);
+            AquireTarget();
         }
         else
         {
@@ -46,25 +45,44 @@ public class Enemy : MonoBehaviour, ITakeHit
 
             if (distance > 2)
             {
-                animator.SetFloat("Speed", 1f);
-                navMeshAgent.isStopped = false;
-                navMeshAgent.SetDestination(target.transform.position);
+                FollowTarget();
             }
             else
             {
-                Attack();
+                TryAttack();
             }
         }
     }
 
-    private void Attack()
+    private void AquireTarget()
+    {
+        target = Character.All
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .FirstOrDefault();
+
+        animator.SetFloat("Speed", 0f);
+    }
+
+    private void FollowTarget()
+    {
+        animator.SetFloat("Speed", 1f);
+        navMeshAgent.isStopped = false;
+        navMeshAgent.SetDestination(target.transform.position);
+    }
+
+    private void TryAttack()
     {
         animator.SetFloat("Speed", 0f);
         navMeshAgent.isStopped = true;
-        animator.SetTrigger("Attack");
+
+        if (attacker.CanAttack)
+        {
+            animator.SetTrigger("Attack");
+            attacker.Attack(target);
+        }
     }
 
-    public void TakeHit(Character hitBy)
+    public void TakeHit(IAttack hitBy)
     {
         currentHealth--;
         

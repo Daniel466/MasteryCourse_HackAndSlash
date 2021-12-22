@@ -11,7 +11,7 @@ public class Box : MonoBehaviour, ITakeHit
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void TakeHit(Character hitBy)
+    public void TakeHit(IAttack hitBy)
     {
         var direction = transform.position - hitBy.transform.position;
         direction.Normalize();

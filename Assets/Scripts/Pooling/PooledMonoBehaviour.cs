@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PooledMonoBehaviour : MonoBehaviour
@@ -36,5 +37,16 @@ public class PooledMonoBehaviour : MonoBehaviour
     {
         if (OnReturnToPool != null)
             OnReturnToPool(this);
+    }
+    
+    protected void ReturnToPool(float delay)
+    {
+        StartCoroutine(ReturnToPoolAfterSeconds(delay));
+    }
+
+    private IEnumerator ReturnToPoolAfterSeconds(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 }

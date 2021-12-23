@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -103,6 +104,6 @@ public class Enemy : PooledMonoBehaviour, ITakeHit
         animator.SetTrigger("Die");
         navMeshAgent.isStopped = true;
 
-        Destroy(gameObject, 6);
+        ReturnToPool(6f);
     }
 }

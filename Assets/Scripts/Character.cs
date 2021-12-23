@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Attacker))]
-public class Character : MonoBehaviour, ITakeHit
+public class Character : MonoBehaviour, ITakeHit, IDie
 {
     public static List<Character> All = new List<Character>();
     
@@ -17,7 +17,7 @@ public class Character : MonoBehaviour, ITakeHit
     private int currentHealth;
 
     public event Action<int, int> OnHealthChanged = delegate {  };
-    public event Action<Character> OnDied = delegate { };
+    public event Action<IDie> OnDied = delegate { };
     
     public int Damage { get { return damage; } }
 

@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         OnCharacterChanged(character);
     }
 
-    private void Character_OnDied(Character character)
+    private void Character_OnDied(IDie character)
     {
         character.OnDied -= Character_OnDied;
         

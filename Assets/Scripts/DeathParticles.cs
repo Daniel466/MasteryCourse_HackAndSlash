@@ -4,26 +4,26 @@ public class DeathParticles : MonoBehaviour
 {
     [SerializeField] private PooledMonoBehaviour deathParticlePrefab;
     
-    private Character character;
+    private IDie entity;
 
     private void Awake()
     {
-        character = GetComponent<Character>();
+        entity = GetComponent<IDie>();
     }
 
     private void OnEnable()
     {
-        character.OnDied += Character_OnDied;
+        entity.OnDied += EntityOnDied;
     }
 
-    private void Character_OnDied(Character character)
+    private void EntityOnDied(IDie entity)
     {
-        character.OnDied -= Character_OnDied;
+        entity.OnDied -= EntityOnDied;
         deathParticlePrefab.Get<PooledMonoBehaviour>(transform.position, Quaternion.identity);
     }
 
     private void OnDisable()
     {
-        character.OnDied -= Character_OnDied;
+        entity.OnDied -= EntityOnDied;
     }
 }

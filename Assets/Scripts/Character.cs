@@ -1,32 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEditor.Build;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, ITakeHit, IAttack
+[RequireComponent(typeof(Attacker))]
+public class Character : MonoBehaviour, ITakeHit
 {
     public static List<Character> All = new List<Character>();
     
     private Controller controller;
+    private Attacker attacker;
     private Animator animator;
-    
+
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float attackOffset = 1f;
-    [SerializeField] private float attackRadius = 1f;
-    
     [SerializeField] private int damage = 1;
-    
-    private Collider[] attackResults;
     
     public int Damage { get { return damage; } }
 
     private void Awake()
     {
+        attacker = GetComponent<Attacker>();
         animator = GetComponentInChildren<Animator>();
-        attackResults = new Collider[10];
-
-        var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
-        animationImpactWatcher.OnImpact += AnimationImpactWatcherOnOnImpact;
     }
 
     internal void SetController(Controller controller)
@@ -51,23 +43,10 @@ public class Character : MonoBehaviour, ITakeHit, IAttack
 
         if (controller.attackPressed)
         {
-            animator.SetTrigger("Attack");
-        }
-    }
-
-    /// <summary>
-    /// Called by animation event via AnimationImpactWatcher
-    /// </summary>
-    private void AnimationImpactWatcherOnOnImpact()
-    {
-        Vector3 position = transform.position + transform.forward * attackOffset;
-        int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
-
-        for (int i = 0; i < hitCount; i++)
-        {
-            var takeHit = attackResults[i].GetComponent<ITakeHit>();
-            if (takeHit != null)
-                takeHit.TakeHit(this);
+            if (attacker.CanAttack)
+            {
+                animator.SetTrigger("Attack");
+            }
         }
     }
 

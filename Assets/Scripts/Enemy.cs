@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Attacker))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : MonoBehaviour, ITakeHit
+public class Enemy : PooledMonoBehaviour, ITakeHit
 {
     [SerializeField] private GameObject impactParticle;
     [SerializeField] private int maxHealth = 3;

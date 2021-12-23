@@ -55,7 +55,11 @@ public class EnemySpawner : MonoBehaviour
                 if (availableSpawnPoints.Contains(spawnPoint))
                     availableSpawnPoints.Remove(spawnPoint);
                 
-                var enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+                //var enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+
+                var pool = Pool.GetPool(prefab);
+                var enemy = pool.Get<Enemy>();
+                
                 totalNumberSpawned++;
             }
         }

@@ -24,6 +24,9 @@ public class UIHealthBar : MonoBehaviour
 
     private void CurrentCharacter_OnDied(Character character)
     {
+        character.OnHealthChanged -= HandleHealthChanged;
+        character.OnDied -= CurrentCharacter_OnDied;
+        currentCharacter = null;
         gameObject.SetActive(false);
     }
 

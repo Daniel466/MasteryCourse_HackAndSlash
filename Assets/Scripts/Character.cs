@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Attacker))]
@@ -6,13 +7,16 @@ public class Character : MonoBehaviour, ITakeHit
 {
     public static List<Character> All = new List<Character>();
     
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private int maxHealth = 10;
+    
     private Controller controller;
     private Attacker attacker;
     private Animator animator;
+    private int currentHealth;
 
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private int damage = 1;
-    
+    public event Action<int, int> OnHealthChanged = delegate {  };
     public int Damage { get { return damage; } }
 
     private void Awake()
@@ -64,6 +68,7 @@ public class Character : MonoBehaviour, ITakeHit
 
     public void TakeHit(IAttack hitBy)
     {
-        // implement damage on players
+        currentHealth -= hitBy.Damage;
+        OnHealthChanged(currentHealth, maxHealth);
     }
 }

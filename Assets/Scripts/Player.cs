@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int playerNumber;
     
     private UIPlayerText uiPlayerText;
+    
+    public event Action<Character> OnCharacterChanged = delegate {  };
 
     public bool HasController { get { return Controller != null; } }
     public int PlayerNumber { get { return playerNumber; } }
@@ -31,5 +33,7 @@ public class Player : MonoBehaviour
     {
         var character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         character.SetController(Controller);
+
+        OnCharacterChanged(character);
     }
 }

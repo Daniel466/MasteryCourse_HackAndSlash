@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Attacker))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : PooledMonoBehaviour, ITakeHit
+public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
 {
     [SerializeField] private PooledMonoBehaviour impactParticle;
     [SerializeField] private int maxHealth = 3;
@@ -15,6 +16,9 @@ public class Enemy : PooledMonoBehaviour, ITakeHit
     private NavMeshAgent navMeshAgent;
     private Attacker attacker;
     private Character target;
+
+    public event Action<int, int> OnHealthChanged = delegate { };
+    public event Action<IDie> OnDied = delegate { };
 
     private bool IsDead { get { return currentHealth <= 0; } }
     
@@ -85,6 +89,8 @@ public class Enemy : PooledMonoBehaviour, ITakeHit
     public void TakeHit(IAttack hitBy)
     {
         currentHealth--;
+
+        OnHealthChanged(currentHealth, maxHealth);
         
         impactParticle.Get<PooledMonoBehaviour>(transform.position + new Vector3(0, 2, 0), Quaternion.identity);
 
@@ -102,6 +108,8 @@ public class Enemy : PooledMonoBehaviour, ITakeHit
     {
         animator.SetTrigger("Die");
         navMeshAgent.isStopped = true;
+
+        OnDied(this);
 
         ReturnToPool(6f);
     }

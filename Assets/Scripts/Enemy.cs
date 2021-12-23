@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : PooledMonoBehaviour, ITakeHit
 {
-    [SerializeField] private GameObject impactParticle;
+    [SerializeField] private PooledMonoBehaviour impactParticle;
     [SerializeField] private int maxHealth = 3;
 
     private int currentHealth;
@@ -87,7 +87,7 @@ public class Enemy : PooledMonoBehaviour, ITakeHit
     {
         currentHealth--;
         
-        Instantiate(impactParticle, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+        impactParticle.Get<PooledMonoBehaviour>(transform.position + new Vector3(0, 2, 0), Quaternion.identity);
 
         if (currentHealth <= 0)
         {

@@ -57,9 +57,8 @@ public class EnemySpawner : MonoBehaviour
                 
                 //var enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
 
-                var pool = Pool.GetPool(prefab);
-                var enemy = pool.Get<Enemy>();
-                
+                var enemy = prefab.Get<Enemy>(spawnPoint.position, spawnPoint.rotation);
+
                 totalNumberSpawned++;
             }
         }

@@ -85,7 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 1
   impactParticle: {fileID: 11400002, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-  maxHealth: 3
+  maxHealth: 1
 --- !u!114 &4688670031748525538
 MonoBehaviour:
   m_ObjectHideFlags: 0

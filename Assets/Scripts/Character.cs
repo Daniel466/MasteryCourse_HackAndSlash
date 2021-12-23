@@ -17,6 +17,8 @@ public class Character : MonoBehaviour, ITakeHit
     private int currentHealth;
 
     public event Action<int, int> OnHealthChanged = delegate {  };
+    public event Action<Character> OnDied = delegate { };
+    
     public int Damage { get { return damage; } }
 
     private void Awake()
@@ -56,6 +58,8 @@ public class Character : MonoBehaviour, ITakeHit
 
     private void OnEnable()
     {
+        currentHealth = maxHealth;
+        
         if (All.Contains(this) == false)
             All.Add(this);
     }
@@ -70,5 +74,15 @@ public class Character : MonoBehaviour, ITakeHit
     {
         currentHealth -= hitBy.Damage;
         OnHealthChanged(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        OnDied(this);
     }
 }

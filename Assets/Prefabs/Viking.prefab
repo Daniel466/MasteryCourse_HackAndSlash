@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5958347437192290078}
   - component: {fileID: 9137922525956472282}
   - component: {fileID: 8035110261815947269}
+  - component: {fileID: 5268198767099947175}
   m_Layer: 0
   m_Name: Viking
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   damage: 1
+  maxHealth: 10
 --- !u!114 &8035110261815947269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +77,20 @@ MonoBehaviour:
   damage: 1
   attackOffset: 1
   attackRadius: 1
+--- !u!114 &5268198767099947175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782207766492045945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294a6feb5c57f40439260ae5a0acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticlePrefab: {fileID: 11400004, guid: 7867af58a6ec48846ae807eb4022fbaa,
+    type: 3}
 --- !u!1001 &462125477145251017
 PrefabInstance:
   m_ObjectHideFlags: 0

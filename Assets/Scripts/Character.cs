@@ -72,6 +72,9 @@ public class Character : MonoBehaviour, ITakeHit
 
     public void TakeHit(IAttack hitBy)
     {
+        if (currentHealth <= 0)
+            return;
+        
         currentHealth -= hitBy.Damage;
         OnHealthChanged(currentHealth, maxHealth);
 

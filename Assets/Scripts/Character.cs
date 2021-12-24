@@ -15,6 +15,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
     private Attacker attacker;
     private Animator animator;
     private int currentHealth;
+    private new Rigidbody rigidbody;
 
     public event Action<int, int> OnHealthChanged = delegate {  };
     public event Action<IDie> OnDied = delegate { };
@@ -25,6 +26,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
     {
         attacker = GetComponent<Attacker>();
         animator = GetComponentInChildren<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     internal void SetController(Controller controller)
@@ -37,7 +39,8 @@ public class Character : MonoBehaviour, ITakeHit, IDie
         Vector3 direction = controller.GetDirection();
         if (direction.magnitude > 0.25f)
         {
-            transform.position += direction * Time.deltaTime * moveSpeed;
+            var velocity = (direction * moveSpeed).With(y: rigidbody.velocity.y);
+            rigidbody.velocity = velocity;
             transform.forward = direction * 360f;
             
             animator.SetFloat("Speed", direction.magnitude);

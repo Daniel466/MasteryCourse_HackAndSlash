@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 684661335788821948}
   - component: {fileID: 6474915987376228368}
+  - component: {fileID: 7779152390045520560}
+  - component: {fileID: 7120057859288495888}
+  - component: {fileID: 6566847092781065686}
+  - component: {fileID: 5238765254755558557}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -45,8 +49,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  damage: 1
+  maxHealth: 10
+--- !u!114 &7779152390045520560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508647763273113819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97131b6f04c84a8b8f500226ef94d53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRefreshSpeed: 1.5
+  damage: 1
   attackOffset: 1
   attackRadius: 1
+--- !u!114 &7120057859288495888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508647763273113819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294a6feb5c57f40439260ae5a0acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticlePrefab: {fileID: 11400004, guid: 7867af58a6ec48846ae807eb4022fbaa,
+    type: 3}
+--- !u!54 &6566847092781065686
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508647763273113819}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &5238765254755558557
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508647763273113819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2554198200174522201
 MonoBehaviour:
   m_ObjectHideFlags: 0

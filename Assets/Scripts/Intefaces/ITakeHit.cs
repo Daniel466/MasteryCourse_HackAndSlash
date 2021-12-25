@@ -1,4 +1,4 @@
 ﻿public interface ITakeHit
 {
-    void TakeHit(IAttack hitBy);
+    void TakeHit(IDamage hitBy);
 }

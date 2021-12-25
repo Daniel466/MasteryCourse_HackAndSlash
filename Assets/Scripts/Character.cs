@@ -72,7 +72,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
             All.Remove(this);
     }
 
-    public void TakeHit(IAttack hitBy)
+    public void TakeHit(IDamage hitBy)
     {
         if (currentHealth <= 0)
             return;

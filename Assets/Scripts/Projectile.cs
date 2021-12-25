@@ -3,6 +3,7 @@
 public class Projectile : PooledMonoBehaviour, IDamage
 {
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private PooledMonoBehaviour impactParticlePrefab;
     
     public int Damage { get { return 1; } }
     
@@ -20,12 +21,17 @@ public class Projectile : PooledMonoBehaviour, IDamage
         }
         else
         {
+            impactParticlePrefab.Get<PooledMonoBehaviour>(transform.position, Quaternion.identity);
             ReturnToPool();
         }
     }
 
     private void Impact(ITakeHit hit)
     {
+        impactParticlePrefab.Get<PooledMonoBehaviour>(transform.position, Quaternion.identity);
+        
         hit.TakeHit(this);
+        
+        ReturnToPool();
     }
 }

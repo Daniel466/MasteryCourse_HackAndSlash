@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 50
-  moveSpeed: 10
+  moveSpeed: 15
   impactParticlePrefab: {fileID: 114324878773532104, guid: 7e48ba6b1b968764490bbc70b66e3fe1,
     type: 3}
 --- !u!1001 &867271914686249107

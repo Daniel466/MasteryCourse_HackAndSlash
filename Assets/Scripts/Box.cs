@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Box : MonoBehaviour, ITakeHit
 {
     [SerializeField] private float forceAmount = 10f;
 
     private new Rigidbody rigidbody;
+    
+    public event Action OnHit = delegate { };
 
     private void Awake()
     {
@@ -17,5 +20,7 @@ public class Box : MonoBehaviour, ITakeHit
         direction.Normalize();
         
         rigidbody.AddForce(direction * forceAmount, ForceMode.Impulse);
+
+        OnHit();
     }
 }

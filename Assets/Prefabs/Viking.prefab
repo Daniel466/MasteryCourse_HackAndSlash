@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 9137922525956472282}
   - component: {fileID: 8035110261815947269}
   - component: {fileID: 5268198767099947175}
+  - component: {fileID: 2192701981371841787}
   - component: {fileID: 1261993456593681812}
   - component: {fileID: 6036202807950749348}
   m_Layer: 8
@@ -79,6 +80,8 @@ MonoBehaviour:
   damage: 1
   attackOffset: 1
   attackRadius: 1
+  attackImpactDelay: 1
+  attackRange: 2
 --- !u!114 &5268198767099947175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +96,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticlePrefab: {fileID: 11400004, guid: 7867af58a6ec48846ae807eb4022fbaa,
     type: 3}
+--- !u!114 &2192701981371841787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782207766492045945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7eb854dfb4eb9aa503c9ac4fe2def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactParticle: {fileID: 11400000, guid: 979632a27455af442bd2d8f36eb0ffce, type: 3}
 --- !u!54 &1261993456593681812
 Rigidbody:
   m_ObjectHideFlags: 0

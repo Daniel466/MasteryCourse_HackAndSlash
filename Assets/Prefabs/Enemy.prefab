@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6822095566973580582}
   - component: {fileID: 4688670031748525538}
   - component: {fileID: 2441634146501010361}
+  - component: {fileID: 5289398035911103954}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -85,7 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 1
-  impactParticle: {fileID: 11400002, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
   maxHealth: 1
 --- !u!114 &4688670031748525538
 MonoBehaviour:
@@ -103,6 +103,8 @@ MonoBehaviour:
   damage: 1
   attackOffset: 1
   attackRadius: 1
+  attackImpactDelay: 0.75
+  attackRange: 2
 --- !u!114 &2441634146501010361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +119,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticlePrefab: {fileID: 114358004396844976, guid: e473029e4c70ad543a6879b82a732f4f,
     type: 3}
+--- !u!114 &5289398035911103954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822095566973580581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7eb854dfb4eb9aa503c9ac4fe2def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactParticle: {fileID: 11400000, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
 --- !u!1001 &6822095565204172785
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Attacker))]
 public class Character : MonoBehaviour, ITakeHit, IDie
 {
     public static List<Character> All = new List<Character>();
@@ -12,7 +11,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
     [SerializeField] private int maxHealth = 10;
     
     private Controller controller;
-    private Attacker attacker;
+    private IAttack attacker;
     private Animator animator;
     private int currentHealth;
     private new Rigidbody rigidbody;
@@ -24,7 +23,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
 
     private void Awake()
     {
-        attacker = GetComponent<Attacker>();
+        attacker = GetComponent<IAttack>();
         animator = GetComponentInChildren<Animator>();
         rigidbody = GetComponent<Rigidbody>();
     }
@@ -54,7 +53,7 @@ public class Character : MonoBehaviour, ITakeHit, IDie
         {
             if (attacker.CanAttack)
             {
-                animator.SetTrigger("Attack");
+                attacker.Attack();
             }
         }
     }

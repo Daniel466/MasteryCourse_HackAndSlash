@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684661335788821948}
   - component: {fileID: 6474915987376228368}
-  - component: {fileID: 7779152390045520560}
+  - component: {fileID: 7350402270942327305}
   - component: {fileID: 7120057859288495888}
   - component: {fileID: 6566847092781065686}
   - component: {fileID: 5238765254755558557}
@@ -51,7 +51,7 @@ MonoBehaviour:
   moveSpeed: 5
   damage: 1
   maxHealth: 10
---- !u!114 &7779152390045520560
+--- !u!114 &7350402270942327305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,13 +60,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2508647763273113819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97131b6f04c84a8b8f500226ef94d53c, type: 3}
+  m_Script: {fileID: 11500000, guid: e70d391f83e6643ed83d6f395ad98149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRefreshSpeed: 1.5
-  damage: 1
-  attackOffset: 1
-  attackRadius: 1
+  attackRefreshSpeed: 1
+  projectilePrefab: {fileID: 724244634243916124, guid: c405aaeb23fc8425f966632ef0c079bd,
+    type: 3}
 --- !u!114 &7120057859288495888
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Attacker : MonoBehaviour, IAttack
 {
@@ -10,11 +9,16 @@ public class Attacker : MonoBehaviour, IAttack
     
     private float attackTimer;
     private Collider[] attackResults;
+    private Animator animator;
 
     public int Damage { get { return damage; } }
+    
+    public bool CanAttack { get { return attackTimer >= attackRefreshSpeed; } }
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
+        
         var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
         if (animationImpactWatcher != null)
         {
@@ -24,12 +28,16 @@ public class Attacker : MonoBehaviour, IAttack
         attackResults = new Collider[10];
     }
 
-    public bool CanAttack { get { return attackTimer >= attackRefreshSpeed; } }
-
     public void Attack(ITakeHit target)
     {
+        animator.SetTrigger("Attack");
         attackTimer = 0;
         target.TakeHit(this);
+    }
+
+    private void Update()
+    {
+        attackTimer += Time.deltaTime;
     }
     
     /// <summary>
@@ -47,9 +55,9 @@ public class Attacker : MonoBehaviour, IAttack
                 takeHit.TakeHit(this);
         }
     }
-
-    private void Update()
+    
+    public void Attack()
     {
-        attackTimer += Time.deltaTime;
+        animator.SetTrigger("Attack");
     }
 }

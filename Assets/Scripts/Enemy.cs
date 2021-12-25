@@ -81,7 +81,6 @@ public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
 
         if (attacker.CanAttack)
         {
-            animator.SetTrigger("Attack");
             attacker.Attack(target);
         }
     }

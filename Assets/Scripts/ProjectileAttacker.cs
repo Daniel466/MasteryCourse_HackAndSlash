@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProjectileAttacker : MonoBehaviour, IAttack
 {
     [SerializeField] private float attackRefreshSpeed = 1f;
     [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private float launchYOffset = 1f;
     
     private float attackTimer;
     private Animator animator;
@@ -26,6 +26,6 @@ public class ProjectileAttacker : MonoBehaviour, IAttack
     {
         animator.SetTrigger("Attack");
 
-        projectilePrefab.Get<Projectile>(transform.position, transform.rotation);
+        projectilePrefab.Get<Projectile>(transform.position + Vector3.up * launchYOffset, transform.rotation);
     }
 }

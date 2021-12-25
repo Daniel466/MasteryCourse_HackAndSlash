@@ -21,6 +21,8 @@ public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
     public event Action OnHit = delegate { };
 
     private bool IsDead { get { return currentHealth <= 0; } }
+    
+    public bool Alive { get; private set; }
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
     private void OnEnable()
     {
         currentHealth = maxHealth;
+        Alive = true;
     }
 
     private void Update()
@@ -105,6 +108,7 @@ public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
         animator.SetTrigger("Die");
         navMeshAgent.isStopped = true;
 
+        Alive = false;
         OnDied(this);
 
         ReturnToPool(6f);

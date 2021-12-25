@@ -7,6 +7,8 @@ public class Box : MonoBehaviour, ITakeHit
 
     private new Rigidbody rigidbody;
     
+    public bool Alive { get { return true; } }
+
     public event Action OnHit = delegate { };
 
     private void Awake()

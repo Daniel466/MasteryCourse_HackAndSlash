@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     public void SpawnCharacter()
     {
-        var character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
+        var character = CharacterPrefab.Get<Character>(Vector3.zero, Quaternion.identity);
         character.SetController(Controller);
         character.OnDied += Character_OnDied;
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     {
         character.OnDied -= Character_OnDied;
         
-        Destroy(character.gameObject);
+        character.gameObject.SetActive(false);
 
         StartCoroutine(RespawnAfterDelay());
     }

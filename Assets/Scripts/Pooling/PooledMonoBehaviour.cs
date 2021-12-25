@@ -33,7 +33,7 @@ public class PooledMonoBehaviour : MonoBehaviour
 
     public int InitialPoolSize { get { return initialPoolSize; } }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (OnReturnToPool != null)
             OnReturnToPool(this);

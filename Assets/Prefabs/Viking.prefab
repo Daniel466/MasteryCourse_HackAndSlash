@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19b0cf05f48249a3b52de5536b1620f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPoolSize: 3
   moveSpeed: 5
   damage: 1
   maxHealth: 10

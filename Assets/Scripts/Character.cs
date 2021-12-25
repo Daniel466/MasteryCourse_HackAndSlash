@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, ITakeHit, IDie
+public class Character : PooledMonoBehaviour, ITakeHit, IDie
 {
     public static List<Character> All = new List<Character>();
     
@@ -70,10 +70,12 @@ public class Character : MonoBehaviour, ITakeHit, IDie
             All.Add(this);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         if (All.Contains(this))
             All.Remove(this);
+        
+        base.OnDisable();
     }
 
     public void TakeHit(IDamage hitBy)

@@ -42,7 +42,7 @@ public class Enemy : PooledMonoBehaviour, ITakeHit, IDie
         if (IsDead)
             return;
         
-        if (target == null)
+        if (target == null || target.Alive == false)
         {
             AquireTarget();
         }

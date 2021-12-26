@@ -29,7 +29,7 @@
  
      public void Attack(ITakeHit target)
      {
-         animator.SetTrigger("Attack");
+         animator.SetTrigger(animationTrigger);
          attackTimer = 0;
          StartCoroutine(DoAttack(target));
      }

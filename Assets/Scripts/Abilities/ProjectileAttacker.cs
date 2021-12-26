@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ProjectileAttacker : AbilityBase, IAttack
 {
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private float launchYOffset = 1f;
+    [SerializeField] private float launchDelay = 1f;
     
     private Animator animator;
     
@@ -16,8 +18,13 @@ public class ProjectileAttacker : AbilityBase, IAttack
 
     public void Attack()
     {
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(animationTrigger);
+        StartCoroutine(LaunchAfterDelay());
+    }
 
+    private IEnumerator LaunchAfterDelay()
+    {
+        yield return new WaitForSeconds(launchDelay);
         projectilePrefab.Get<Projectile>(transform.position + Vector3.up * launchYOffset, transform.rotation);
     }
 

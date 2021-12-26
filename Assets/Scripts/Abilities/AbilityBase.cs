@@ -3,11 +3,10 @@
 public abstract class AbilityBase : MonoBehaviour
 {
     [SerializeField] private float attackRefreshSpeed = 1.5f;
-
     [SerializeField] private PlayerButton button;
+    [SerializeField] protected string animationTrigger;
    
     protected float attackTimer;
-    
     private Controller controller;
 
     public bool CanAttack { get { return attackTimer >= attackRefreshSpeed; } }

@@ -9,6 +9,7 @@
      [SerializeField] private float attackImpactDelay = 1f;
      [SerializeField] private float attackRange = 2f;
      
+     private LayerMask layerMask;
      private Collider[] attackResults;
      private Animator animator;
  
@@ -16,6 +17,9 @@
      
      private void Awake()
      {
+         string currentLayer = LayerMask.LayerToName(gameObject.layer);
+         layerMask = ~LayerMask.GetMask(currentLayer);
+         
          animator = GetComponentInChildren<Animator>();
          
          var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
@@ -58,7 +62,7 @@
      private void AnimationImpactWatcherOnOnImpact()
      {
          Vector3 position = transform.position + transform.forward * attackOffset;
-         int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
+         int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults, layerMask);
  
          for (int i = 0; i < hitCount; i++)
          {

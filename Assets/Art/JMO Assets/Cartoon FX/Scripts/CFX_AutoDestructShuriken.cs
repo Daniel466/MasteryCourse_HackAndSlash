@@ -11,7 +11,7 @@ using System.Collections;
 public class CFX_AutoDestructShuriken : PooledMonoBehaviour
 {
 	// If true, deactivate the object instead of destroying it
-	public bool OnlyDeactivate;
+	private bool OnlyDeactivate = true;
 	
 	void OnEnable()
 	{

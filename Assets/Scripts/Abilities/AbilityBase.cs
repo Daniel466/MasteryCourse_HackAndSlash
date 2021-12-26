@@ -7,30 +7,39 @@ public abstract class AbilityBase : MonoBehaviour
     [SerializeField] protected string animationTrigger;
    
     protected float attackTimer;
+    
     private Controller controller;
+    private Animator animator;
 
     public bool CanAttack { get { return attackTimer >= attackRefreshSpeed; } }
-
+    
+    protected abstract void OnUse();
+    
     public void SetController(Controller controller)
     {
         this.controller = controller;
-        foreach (var ability in GetComponents<AbilityBase>())
-        {
-            ability.SetController(controller);
-        }
     }
     
     private void Update()
     {
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+        
         attackTimer += Time.deltaTime;
 
-        if (controller != null &&
-            CanAttack &&
-            controller.ButtonDown(button))
+        if (ShouldTryUse())
         {
-            OnTryUse();
+            if (string.IsNullOrEmpty(animationTrigger))
+            {
+                animator.SetTrigger(animationTrigger);
+            }
+            
+            OnUse();
         }
     }
 
-    protected abstract void OnTryUse();
+    private bool ShouldTryUse()
+    {
+        return controller != null && CanAttack && controller.ButtonDown(button);
+    }
 }

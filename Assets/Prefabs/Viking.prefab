@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 8035110261815947269}
   - component: {fileID: 5268198767099947175}
   - component: {fileID: 2192701981371841787}
-  - component: {fileID: 7323905605349192143}
+  - component: {fileID: 4658896277746277282}
   - component: {fileID: 1261993456593681812}
   - component: {fileID: 6036202807950749348}
   m_Layer: 8
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRefreshSpeed: 1.5
   button: 0
+  animationTrigger: 
   damage: 1
   attackOffset: 1
   attackRadius: 1
@@ -112,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactParticle: {fileID: 11400000, guid: 979632a27455af442bd2d8f36eb0ffce, type: 3}
---- !u!114 &7323905605349192143
+--- !u!114 &4658896277746277282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,12 +122,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8782207766492045945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7c7ee99bd4b4de1834f699f1fefc2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 62d291b484b154f8aaaaa6b3c59409d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackRefreshSpeed: 1.5
   button: 2
-  jumpForce: 300
+  animationTrigger: 
+  damage: 1
+  attackRadius: 2
+  impactDelay: 0.25
+  forceAmount: 10
 --- !u!54 &1261993456593681812
 Rigidbody:
   m_ObjectHideFlags: 0

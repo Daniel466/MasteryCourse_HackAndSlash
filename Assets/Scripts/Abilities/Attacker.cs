@@ -29,7 +29,6 @@
  
      public void Attack(ITakeHit target)
      {
-         animator.SetTrigger(animationTrigger);
          attackTimer = 0;
          StartCoroutine(DoAttack(target));
      }
@@ -74,7 +73,7 @@
          animator.SetTrigger("Attack");
      }
  
-     protected override void OnTryUse()
+     protected override void OnUse()
      {
          Attack();
      }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class Controller : MonoBehaviour
     private string attackButton;
     private string specialAttackButton;
     private string jumpButton;
+    
     private string horizontalAxis;
     private string verticalAxis;
 
@@ -27,6 +27,7 @@ public class Controller : MonoBehaviour
             attackPressed = Input.GetButtonDown(attackButton);
             specialAttackPressed = Input.GetButtonDown(specialAttackButton);
             jumpPressed = Input.GetButtonDown(jumpButton);
+            
             horizontal = Input.GetAxis(horizontalAxis);
             vertical = Input.GetAxis(verticalAxis);
         }
@@ -38,6 +39,7 @@ public class Controller : MonoBehaviour
         attackButton = "Attack" + Index;
         specialAttackButton = "SpecialAttack" + Index;
         jumpButton = "Jump" + Index;
+        
         horizontalAxis = "Horizontal" + index;
         verticalAxis = "Vertical" + index;
         gameObject.name = "Controller" + Index;

@@ -11,7 +11,7 @@ public class Jump : AbilityBase
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    protected override void OnTryUse()
+    protected override void OnUse()
     {
         rigidbody.AddForce(Vector3.up * jumpForce);
     }

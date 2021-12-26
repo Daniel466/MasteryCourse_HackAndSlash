@@ -18,7 +18,6 @@ public class ProjectileAttacker : AbilityBase, IAttack
 
     public void Attack()
     {
-        animator.SetTrigger(animationTrigger);
         StartCoroutine(LaunchAfterDelay());
     }
 
@@ -28,7 +27,7 @@ public class ProjectileAttacker : AbilityBase, IAttack
         projectilePrefab.Get<Projectile>(transform.position + Vector3.up * launchYOffset, transform.rotation);
     }
 
-    protected override void OnTryUse()
+    protected override void OnUse()
     {
         Attack();
     }

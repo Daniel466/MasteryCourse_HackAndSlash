@@ -34,6 +34,10 @@ public class Character : PooledMonoBehaviour, ITakeHit, IDie
     internal void SetController(Controller controller)
     {
         this.controller = controller;
+        foreach (var ability in GetComponents<AbilityBase>())
+        {
+            ability.SetController(controller);
+        }
     }
 
     private void Update()
@@ -50,14 +54,6 @@ public class Character : PooledMonoBehaviour, ITakeHit, IDie
         else
         {
             animator.SetFloat("Speed", 0);
-        }
-
-        if (controller.attackPressed)
-        {
-            if (attacker.CanAttack)
-            {
-                attacker.Attack();
-            }
         }
     }
 
